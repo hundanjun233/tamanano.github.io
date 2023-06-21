@@ -229,6 +229,7 @@ template {
   background: var(--card-bg);
   -webkit-box-shadow: var(--card-box-shadow);
   box-shadow: var(--card-box-shadow);
+  border: 1px solid #d6ddda;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -1383,8 +1384,8 @@ canvas:not(#ribbon-canvas),
   --blockquote-bg: rgba(91,200,153,0.1);
   --reward-pop: #f5f5f5;
   --toc-link-color: #666261;
-  --card-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.05);
-  --card-hover-box-shadow: 0 3px 8px 6px rgba(7,17,27,0.09);
+  --card-box-shadow: 0 3px 4px 3px rgba(7,37,27,0);
+  --card-hover-box-shadow: 0 3px 4px 3px rgba(7,37,27,0.04);
   --pseudo-hover: #8170bb;
   --headline-presudo: #a0a0a0;
   --scrollbar-color: #5bc899;
@@ -2484,7 +2485,7 @@ h1.page-title + .tag-cloud-list {
 }
 @media screen and (min-width: 900px) {
   #aside-content {
-    padding-left: 15px;
+    padding-left: 24px;
   }
 }
 @media screen and (max-width: 900px) {
@@ -2555,6 +2556,9 @@ h1.page-title + .tag-cloud-list {
 #aside-content .item-headline {
   padding-bottom: 6px;
   font-size: 1.2em;
+}
+#aside-content .item-headline i {
+  color: #5bc899;
 }
 #aside-content .item-headline span {
   margin-left: 6px;
@@ -2856,7 +2860,7 @@ h1.page-title + .tag-cloud-list {
   animation: more-btn-move 1s infinite;
 }
 #aside-content .card-announcement .item-headline i {
-  color: #f00;
+  color: #5bc899;
 }
 .avatar-img {
   overflow: hidden;
@@ -3717,8 +3721,8 @@ h1.page-title + .tag-cloud-list {
   text-align: center;
 }
 #pagination .page-number.current {
-  background: rgba(27,31,35,0.05);
-  color: var(--white);
+  background: rgba(255,255,255,0.05);
+  color: var(--black);
 }
 #pagination .pagination-info {
   position: absolute;
