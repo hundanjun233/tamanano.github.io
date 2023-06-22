@@ -7,7 +7,7 @@ $(function(e){
     show_date_time();
 })
 function show_date_time(){
-    $('.framework-info').html('本站已经<font style=color:#33DD99><i class="fa-fw fas fa-heartbeat card-announcement-animation cc_pointer"></i>Wonderhoi<i class="fa-fw fas fa-heartbeat card-announcement-animation cc_pointer"></i></font>了<span id="span_dt_dt" style="color: #fff;"></span>');
+    $('.framework-info').html('本站已经<font style=color:#33DD99> <i class="fa-fw fas fa-heartbeat card-announcement-animation cc_pointer"></i>Wonderhoi<i class="fa-fw fas fa-heartbeat card-announcement-animation cc_pointer"></i> </font>了<span id="span_dt_dt" style="color: #fff;"></span>');
     window.setTimeout("show_date_time()", 1000);
     BirthDay=new Date("6/20/2023 0:0:0");
     today=new Date();
@@ -22,5 +22,5 @@ function show_date_time(){
     e_minsold=(e_hrsold-hrsold)*60;
     minsold=Math.floor((e_hrsold-hrsold)*60);
     seconds=Math.floor((e_minsold-minsold)*60);
-    span_dt_dt.innerHTML='<font style=color:#33DD99>'+daysold+'</font> 天 <font style=color:#33DD99>'+hrsold+'</font> 时 <font style=color:#33DD99>'+minsold+'</font> 分 <font style=color:#33DD99>'+seconds+'</font> 秒';
+    span_dt_dt.innerHTML='<font style=color:#33DD99> '+daysold+'</font> 天 <font style=color:#33DD99>'+hrsold+'</font> 时 <font style=color:#33DD99>'+minsold+'</font> 分 <font style=color:#33DD99>'+seconds+'</font> 秒';
 }
