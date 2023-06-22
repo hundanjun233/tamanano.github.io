@@ -117,7 +117,6 @@ class Live2dLoader {
     );
     this.model.scale.set(config.scale || 0.1);
     if (config.draggable === true) this.draggable(this.model);
-
     this.addListener(config, canvas, this.initMotionIndex());
   }
 
@@ -151,6 +150,7 @@ class Live2dLoader {
         else if (file.match("w-adult-tilthead0")!=null) motionIndex[2] = index;
         // console.log(motionIndex, file);
       });
+    console.log(motionIndex)
 
     return motionIndex;
   }
@@ -160,7 +160,7 @@ class Live2dLoader {
     // this.model.on("hit", (hitAreas) => {});
     // this.model.emit("hit");
 
-      document.addEventListener("click", (event) => {
+    document.addEventListener("click", (event) => {
       let offsetX = event.clientX - this.app.view.offsetLeft,
         offsetY = event.clientY - this.app.view.offsetTop;
       if (
