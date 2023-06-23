@@ -14,6 +14,7 @@
 // import * as live2d from "pixi-live2d-display";
 
 live2d = PIXI.live2d;
+base = PIXI.BaseTexture.defaultOptions
 class Live2dLoader {
   constructor(models) {
 
@@ -111,13 +112,14 @@ class Live2dLoader {
       transparent: true,
       antialias: true, // 抗锯齿
       autoStart: true,
+      autoDensity: true,
     });
+    console.log(this.app)
+    // this.app.renderer.multisample = 40;
     this.model = await live2d.Live2DModel.from(config.role);
+    console.log(this.model)
+    this.model.textures[0].baseTexture.anisotropicLevel=2;
     this.app.stage.addChild(this.model);
-    this.model.position.set(
-      canvas.style.width * 0.5,
-      canvas.style.height * 0.5
-    );
     this.model.scale.set(config.scale || 0.1);
     if (config.draggable === true) this.draggable(this.model);
     this.addListener(config, canvas, this.initMotionIndex());
