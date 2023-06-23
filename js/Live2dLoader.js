@@ -22,7 +22,7 @@ class Live2dLoader {
       "color: #6aff00;background: #0c222e;"
     );
     let config = models[this.getLive2dIndex(models)];
-    if (!config.mobile && this.isMobile()) return;
+
     this.load(config);
   }
 
@@ -100,6 +100,9 @@ class Live2dLoader {
       canvas.style.background = "url(" + config.background + ")";
       canvas.style.backgroundSize = "cover";
     }
+    if (!config.mobile && this.isMobile()){
+      canvas.style.display = "none";
+    };
 
     this.app = new PIXI.Application({
       view: document.getElementById("canvas"),
