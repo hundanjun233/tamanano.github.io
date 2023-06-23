@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
       isShowPercent && rightsideScrollPercent(currentTop)
 
       if (document.body.scrollHeight <= innerHeight) {
-        $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
+        $rightside.style.cssText = 'opacity: 1; transform: translateX(-58px)'
       }
     }, 200)
 

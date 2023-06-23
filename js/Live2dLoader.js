@@ -199,10 +199,11 @@ class Live2dLoader {
         // 鼠标穿透, 先把 canvas 设为可穿透
         canvas.style.pointerEvents = "none";
         // 为该元素派发点击事件 https://www.blogwxb.cn/js%E4%B8%AD%E7%94%A8x%EF%BC%8Cy%E5%9D%90%E6%A0%87%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E7%82%B9%E5%87%BB%E5%8A%9F%E8%83%BD/
+        console.log(document.elementsFromPoint(event.touches[0].clientX, event.touches[0].clientY)[0])
         document
-          .elementsFromPoint(event.clientX, event.clientY)[0]
+          .elementsFromPoint(event.touches[0].clientX, event.touches[0].clientY)[0]
           .dispatchEvent(
-            new TouchEvent("touchstart", {
+            new MouseEvent("click", {
               bubbles: true, // 事件冒泡
               cancelable: true, // 默认事件
               view: window,
