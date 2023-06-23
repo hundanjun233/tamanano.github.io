@@ -89,7 +89,7 @@ class Live2dLoader {
   async load(config) {
     let canvas = document.createElement("canvas");
     canvas.id = "canvas";
-    document.body.appendChild(canvas);
+    document.getElementById("rightside").appendChild(canvas);
     canvas.style.position = "fixed";
     if (config.left) canvas.style.left = config.left;
     if (config.right) canvas.style.right = config.right;
@@ -165,64 +165,80 @@ class Live2dLoader {
     // this.model.on("hit", (hitAreas) => {});
     // this.model.emit("hit");
 
-    document.addEventListener("click", (event) => {
-      let offsetX = event.clientX - this.app.view.offsetLeft,
-        offsetY = event.clientY - this.app.view.offsetTop;
-      if (
-        0 < offsetX &&
-        offsetX < this.app.view.width &&
-        0 < offsetY &&
-        offsetY < this.app.view.height
-      ) {
-        if (config.pierceThrough !== false) {
-          // 鼠标穿透, 先把 canvas 设为可穿透
-          canvas.style.pointerEvents = "none";
-          // 为该元素派发点击事件 https://www.blogwxb.cn/js%E4%B8%AD%E7%94%A8x%EF%BC%8Cy%E5%9D%90%E6%A0%87%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E7%82%B9%E5%87%BB%E5%8A%9F%E8%83%BD/
-          document
-            .elementsFromPoint(event.clientX, event.clientY)[0]
-            .dispatchEvent(
-              new MouseEvent("click", {
-                bubbles: true, // 事件冒泡
-                cancelable: true, // 默认事件
-                view: window,
-              })
-            );
-          canvas.style.pointerEvents = "auto";
-        }
-
-        let po = this.model.toModelPosition(new PIXI.Point(offsetX, offsetY)),
-          hitAreas,
-          ifRandom;
-
-        ifRandom = true;
-
-        if (ifRandom === true) {
-          let keys = Object.keys(
-            this.model.internalModel.motionManager.motionGroups
+    this.app.view.addEventListener("click", (event) => {
+      if (config.pierceThrough !== false) {
+        // 鼠标穿透, 先把 canvas 设为可穿透
+        canvas.style.pointerEvents = "none";
+        // 为该元素派发点击事件 https://www.blogwxb.cn/js%E4%B8%AD%E7%94%A8x%EF%BC%8Cy%E5%9D%90%E6%A0%87%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E7%82%B9%E5%87%BB%E5%8A%9F%E8%83%BD/
+        document
+          .elementsFromPoint(event.clientX, event.clientY)[0]
+          .dispatchEvent(
+            new MouseEvent("click", {
+              bubbles: true, // 事件冒泡
+              cancelable: true, // 默认事件
+              view: window,
+            })
           );
-          this.model.internalModel.motionManager.startRandomMotion(
-            keys[Math.floor(Math.random() * keys.length)]
-          );
-        }
+        canvas.style.pointerEvents = "auto";
+      }
 
+
+      let ifRandom = true;
+
+      if (ifRandom === true) {
+        let keys = Object.keys(
+          this.model.internalModel.motionManager.motionGroups
+        );
+        this.model.internalModel.motionManager.startRandomMotion(
+          keys[Math.floor(Math.random() * keys.length)]
+        );
+      }
+    });
+    this.app.view.addEventListener("touchstart", (event) => {
+      if (config.pierceThrough !== false) {
+        // 鼠标穿透, 先把 canvas 设为可穿透
+        canvas.style.pointerEvents = "none";
+        // 为该元素派发点击事件 https://www.blogwxb.cn/js%E4%B8%AD%E7%94%A8x%EF%BC%8Cy%E5%9D%90%E6%A0%87%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%A8%A1%E6%8B%9F%E7%82%B9%E5%87%BB%E5%8A%9F%E8%83%BD/
+        document
+          .elementsFromPoint(event.clientX, event.clientY)[0]
+          .dispatchEvent(
+            new TouchEvent("touchstart", {
+              bubbles: true, // 事件冒泡
+              cancelable: true, // 默认事件
+              view: window,
+            })
+          );
+        canvas.style.pointerEvents = "auto";
+      }
+
+
+      let ifRandom = true;
+
+      if (ifRandom === true) {
+        let keys = Object.keys(
+          this.model.internalModel.motionManager.motionGroups
+        );
+        this.model.internalModel.motionManager.startRandomMotion(
+          keys[Math.floor(Math.random() * keys.length)]
+        );
       }
     });
   }
 
-  hitTest(poX, poY) {
-    let hitAreas = [];
-    ["TouchHead", "TouchSpecial", "TouchBody"].forEach((id) => {
-      let bounds = this.model.internalModel.getDrawableBounds(id);
-      let b =
-        bounds.x < poX &&
-        poX < bounds.x + bounds.width &&
-        bounds.y < poY &&
-        poY < bounds.y + bounds.height;
-      if (b) {
-        hitAreas.push(id);
-        // console.log(id);
-      }
-    });
-    return hitAreas;
-  }
+  // hitTest(poX, poY) {
+  //   let hitAreas = [];
+  //   ["TouchHead", "TouchSpecial", "TouchBody"].forEach((id) => {
+  //     let bounds = this.model.internalModel.getDrawableBounds(id);
+  //     let b =
+  //       bounds.x < poX &&
+  //       poX < bounds.x + bounds.width &&
+  //       bounds.y < poY &&
+  //       poY < bounds.y + bounds.height;
+  //     if (b) {
+  //       hitAreas.push(id);
+  //       // console.log(id);
+  //     }
+  //   });
+  //   return hitAreas;
+  // }
 }

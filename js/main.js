@@ -297,6 +297,8 @@ document.addEventListener('DOMContentLoaded', function () {
    */
   const scrollFn = function () {
     const $rightside = document.getElementById('rightside')
+    // const $canvas = document.getElementById('canvas')
+
     const innerHeight = window.innerHeight + 56
     let initTop = 0
     let isChatShow = true
@@ -307,6 +309,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // 當滾動條小于 56 的時候
     if (document.body.scrollHeight <= innerHeight) {
       $rightside.style.cssText = 'opacity: 1; transform: translateX(-58px)'
+      // $canvas.css({"bottom":0})
+
       return
     }
 
@@ -336,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         $header.classList.add('nav-fixed')
         if (window.getComputedStyle($rightside).getPropertyValue('opacity') === '0') {
-          $rightside.style.cssText = 'opacity: 0.8; transform: translateX(-58px)'
+          $rightside.style.cssText = 'opacity: 1; transform: translateX(-58px)'
         }
       } else {
         if (currentTop === 0) {
