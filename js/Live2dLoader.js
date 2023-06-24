@@ -115,12 +115,12 @@ class Live2dLoader {
       autoDensity: true,
     });
     console.log(this.app)
-    // this.app.renderer.framebuffer.msaaSamples= [8,4,2]
-    // this.app.renderer.multisample = 40;
+    this.app.renderer.framebuffer.msaaSamples= [8,4,2]
+    this.app.renderer.multisample = 8;
     this.model = await live2d.Live2DModel.from(config.role);
     console.log(this.model)
     this.model.textures[0].baseTexture.mipmap = 2;
-    this.model.textures[0].baseTexture.anisotropicLevel=2;
+    this.model.textures[0].baseTexture.anisotropicLevel=5;
     this.app.stage.addChild(this.model);
     this.model.scale.set(config.scale || 0.1);
     if (config.draggable === true) this.draggable(this.model);
