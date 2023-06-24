@@ -118,6 +118,7 @@ class Live2dLoader {
     // this.app.renderer.multisample = 40;
     this.model = await live2d.Live2DModel.from(config.role);
     console.log(this.model)
+    this.model.textures[0].baseTexture.mipmap = 2;
     this.model.textures[0].baseTexture.anisotropicLevel=2;
     this.app.stage.addChild(this.model);
     this.model.scale.set(config.scale || 0.1);
