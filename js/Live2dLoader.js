@@ -115,6 +115,7 @@ class Live2dLoader {
       autoDensity: true,
     });
     console.log(this.app)
+    // this.app.renderer.framebuffer.msaaSamples= [8,4,2]
     // this.app.renderer.multisample = 40;
     this.model = await live2d.Live2DModel.from(config.role);
     console.log(this.model)
