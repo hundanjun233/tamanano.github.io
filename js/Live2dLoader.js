@@ -9,10 +9,20 @@
  * @?: *********************************************************************
  */
 
+
+
 // Under two lines for dev to see functions, Comment before Commit.
 // import * as PIXI from "pixi.js";
 // import * as live2d from "pixi-live2d-display";
-
+// console.log(findLive2d)
+// let live2dInstance = new findLive2d.default;
+// const live2dmanager = live2dInstance.initialize({ efficient: false})
+// live2dmanager.addModel({path: '/live2d_models/Haru/', 
+// fileName:'Haru', modelName: 'Haru'
+// }, false).then(function(result){
+//   console.log(result)
+//   result.appear()})
+// model.prototype.appear()
 live2d = PIXI.live2d;
 base = PIXI.BaseTexture.defaultOptions
 class Live2dLoader {
@@ -112,17 +122,15 @@ class Live2dLoader {
       transparent: true,
       antialias: true, // 抗锯齿
       autoStart: true,
-      autoDensity: true,
-    });
-    console.log(this.app)
-    this.app.renderer.framebuffer.msaaSamples= [8,4,2]
-    this.app.renderer.multisample = 8;
+      resolution:5
+        });
+    this.app.renderer.autoDensity=true;
+    this.app.renderer.resize(config.width, config.height);
+
     this.model = await live2d.Live2DModel.from(config.role);
-    console.log(this.model)
-    this.model.textures[0].baseTexture.mipmap = 2;
-    this.model.textures[0].baseTexture.anisotropicLevel=5;
     this.app.stage.addChild(this.model);
     this.model.scale.set(config.scale || 0.1);
+
     if (config.draggable === true) this.draggable(this.model);
     this.addListener(config, canvas, this.initMotionIndex());
   }
