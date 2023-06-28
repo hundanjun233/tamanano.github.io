@@ -98,7 +98,8 @@ class Live2dLoader {
 
   async load(config) {
     let canvas = document.createElement("canvas");
-    canvas.id = "canvas";
+    canvas.id = "live2dCanvas";
+    canvas.style.display = "block";
     document.getElementById("rightside").appendChild(canvas);
     canvas.style.position = "fixed";
     if (config.left) canvas.style.left = config.left;
@@ -116,7 +117,7 @@ class Live2dLoader {
     };
 
     this.app = new PIXI.Application({
-      view: document.getElementById("canvas"),
+      view: document.getElementById("live2dCanvas"),
       width: config.width || 800,
       height: config.height || 600,
       transparent: true,

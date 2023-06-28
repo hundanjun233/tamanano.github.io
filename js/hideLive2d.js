@@ -1,15 +1,10 @@
-
 function hideLive2d(){
-    let canvas = $("canvas")
-    console.log(canvas)
-    console.log(canvas.css("display"))
-    console.log(canvas.css("opacity"))
+    let canvas = document.getElementById("live2dCanvas")
 
-    if(canvas.css("display")=="none"){
-        canvas.css({"display":"block"})
-
+    if(canvas.style.display==="none"){
+        canvas.style.display = "block"
     }
     else{
-        canvas.css({"display":"none"})
+        canvas.style.display="none"
     }
 }
