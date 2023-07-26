@@ -123,7 +123,7 @@ class Live2dLoader {
       transparent: true,
       antialias: true, // 抗锯齿
       autoStart: true,
-      resolution:5
+      resolution:2
         });
     this.app.renderer.autoDensity=true;
     this.app.renderer.resize(config.width, config.height);
